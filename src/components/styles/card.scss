@@ -1,8 +1,20 @@
+@import './variables.scss';
+
+.app-main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .card {
-    width: 5em;
-    height: 5em;
+    padding: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    min-width: 5em;
+    height: fit-content;
+    border: 3px solid $mainColor;
     border-radius: 10%;
-    border: 1px solid $mainColor;
     font-family: $mainFont;
     background-color: $backgroundColor;
 }

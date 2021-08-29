@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from './components/card.jsx';
-import WordsList from './components/words-list';
-import './App.css';
-import DataGrid from 'react-data-grid';
-import Table from './components/words-table.jsx';
-
+// import WordsList from './components/words-list';
+// import DataGrid from 'react-data-grid';
+import './components/styles/card.scss';
+import './components/styles/variables.scss';
+import Header from './components/header.jsx';
 
 const words = [
   {preposition: 'das',
@@ -52,16 +52,14 @@ const words = [
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
-      <main>
+      <Header></Header>
+      <main className='app-main'>
         {
           words.map((w) =>
             <Card word={w.word} 
             preposition={w.preposition} transcription={w.transcription} translation = {w.translation}></Card>
           )
         }
-            <WordsList wordsList ={words}></WordsList>      
       </main>
 
       <footer></footer>

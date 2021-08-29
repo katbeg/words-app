@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+.header {
+    height: fit-content;
+    background-color: $mainColor;
+    color: $backgroundColor;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5em;
+    padding: 1em;
+}
+
+.signInImg {
+    width: 3em;
+    padding-right: 1em;
+}

@@ -6,7 +6,7 @@ function WordsList(props){
         <div className='wordsList'>
             <p>Добавить новое слово +</p>
             {words.map((w) => 
-            <p>{w.word} <sup>x</sup></p>)
+                <p>{w.word} <sup>x</sup></p>)
             }
         </div>
     );

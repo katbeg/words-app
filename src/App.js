@@ -2,9 +2,11 @@ import React from 'react';
 import Card from './components/card.jsx';
 import WordsList from './components/words-list';
 import './App.css';
+import DataGrid from 'react-data-grid';
+import Table from './components/words-table.jsx';
 
 
-const wordsArr = [
+const words = [
   {preposition: 'das',
   word: 'Problem',
   transcription: '[proˈbleːm]',
@@ -44,11 +46,8 @@ const wordsArr = [
   {preposition: 'das',
   word: 'Jahr',
   transcription: 'ˈjaːɐ̯',
-  translation: 'Год'},
+  translation: 'Год'}
 ];
-
-const words = JSON.stringify(wordsArr);
-
 
 function App() {
   return (

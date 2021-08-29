@@ -1,7 +1,6 @@
 import React from "react";
 
-
-function Card(){
+function Card(props){
     return(
         <div className='card'>
             <p className='card__word'>{props.preposition} {props.word}</p>

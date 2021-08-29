@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-.app-main {
+.app-main{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -12,9 +12,14 @@
     margin-bottom: 1em;
     text-align: center;
     min-width: 5em;
+    max-width: 7em;
     height: fit-content;
     border: 3px solid $mainColor;
     border-radius: 10%;
     font-family: $mainFont;
     background-color: $backgroundColor;
+}
+
+th, td {
+    padding: 1em;
 }

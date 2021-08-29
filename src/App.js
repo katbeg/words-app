@@ -54,12 +54,34 @@ function App() {
     <div className="App">
       <Header></Header>
       <main className='app-main'>
+        <div>
         {
           words.map((w) =>
             <Card word={w.word} 
             preposition={w.preposition} transcription={w.transcription} translation = {w.translation}></Card>
           )
         }
+        </div>
+        <div className='app-main__table'>
+            <thead>
+              <th>Слово с предлогом</th>
+              <th>Транскрипция</th>
+              <th>Перевод</th>
+              <th><button>Добавить</button></th>
+            </thead>
+            <tbody>
+            {
+              words.map((w) =>
+                <tr>
+                  <td>{w.preposition} {w.word}</td>
+                  <td>{w.transcription}</td>
+                  <td>{w.translation}</td>
+                  <td><button>Удалить</button></td>
+                </tr>
+              )
+            }
+            </tbody>
+        </div>
       </main>
 
       <footer></footer>

@@ -67,9 +67,15 @@ function App() {
               <th>Слово с предлогом</th>
               <th>Транскрипция</th>
               <th>Перевод</th>
-              <th><button>Добавить</button></th>
+              <th></th>
             </thead>
             <tbody>
+              <tr>
+              <td><input type='text' placeholder='Word with a preposition'/></td>
+                  <td><input placeholder='Transcription'/></td>
+                  <td><input placeholder='Translation'/></td>
+                  <td><button>Добавить</button></td>
+              </tr>
             {
               words.map((w) =>
                 <tr>

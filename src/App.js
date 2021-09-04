@@ -1,10 +1,9 @@
 import React from 'react';
 import Card from './components/card.jsx';
-// import WordsList from './components/words-list';
-// import DataGrid from 'react-data-grid';
 import './components/styles/card.scss';
 import './components/styles/variables.scss';
 import Header from './components/header.jsx';
+import Table from './components/table.jsx';
 
 const words = [
   {preposition: 'das',
@@ -62,32 +61,7 @@ function App() {
           )
         }
         </div>
-        <div className='app-main__table'>
-            <thead>
-              <th>Слово с предлогом</th>
-              <th>Транскрипция</th>
-              <th>Перевод</th>
-              <th></th>
-            </thead>
-            <tbody>
-              <tr>
-              <td><input type='text' placeholder='Word with a preposition'/></td>
-                  <td><input placeholder='Transcription'/></td>
-                  <td><input placeholder='Translation'/></td>
-                  <td><button>Добавить</button></td>
-              </tr>
-            {
-              words.map((w) =>
-                <tr>
-                  <td>{w.preposition} {w.word}</td>
-                  <td>{w.transcription}</td>
-                  <td>{w.translation}</td>
-                  <td><button>Удалить</button></td>
-                </tr>
-              )
-            }
-            </tbody>
-        </div>
+        <Table words={words}></Table>
       </main>
 
       <footer></footer>

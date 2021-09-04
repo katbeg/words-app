@@ -1,0 +1,9 @@
+@import './variables.scss';
+
+.customBtn{
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    background-color: $backgroundColor;
+    color: $mainColor;
+    margin: 0.5em;
+}

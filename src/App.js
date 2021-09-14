@@ -4,6 +4,7 @@ import './components/styles/card.scss';
 import './components/styles/variables.scss';
 import Header from './components/header.jsx';
 import Table from './components/table.jsx';
+import CardSlider from './components/Slider.jsx';
 
 const words = [
   {preposition: 'das',
@@ -53,6 +54,9 @@ function App() {
     <div className="App">
       <Header></Header>
       <main className='app-main'>
+        <div>
+          <CardSlider words={words}/>
+        </div>
         <div>
         {
           words.map((w) =>

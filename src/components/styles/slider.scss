@@ -1,0 +1,16 @@
+@import 'variables.scss';
+
+.slider{
+    &__counter{
+        color: $mainColor;
+        text-align: center;
+    }
+}
+
+.Carousel-buttonHidden-9 {
+    opacity: 1 !important;
+}
+
+.Carousel-root-1 {
+    padding: 0 5vw;
+}

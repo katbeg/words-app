@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {  BrowserRouter,
+          Switch,
+          Route,
+          Link } from 'react-router-dom';
 import Card from './components/card.jsx';
 import './components/styles/card.scss';
 import './components/styles/variables.scss';
 import Header from './components/header.jsx';
 import Table from './components/table.jsx';
 import CardSlider from './components/Slider.jsx';
+import Loader from './components/loader.jsx';
 
 const words = [
   {preposition: 'das',
@@ -50,10 +55,20 @@ const words = [
 ];
 
 function App() {
+  const [isLoading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    //запрос на сервер, после запроса setLoading меняется
+    setLoading(false); 
+  },[]);
+
   return (
     <div className="App">
       <Header></Header>
       <main className='app-main'>
+        {isLoading? 
+        <Loader/>:
+        <>
         <div>
           <CardSlider words={words}/>
         </div>
@@ -66,8 +81,10 @@ function App() {
         }
         </div>
         <Table words={words}></Table>
+        </>
+        }
+       
       </main>
-
       <footer></footer>
     </div>
   );

@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+.not-found{
+    font-family: $mainFont;
+    color: $mainColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+    text-align: center;
+    &__link{
+        text-decoration: none;
+        color: $mainColor;
+        margin-top: 1em;
+    }
+}

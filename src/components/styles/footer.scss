@@ -5,7 +5,9 @@
     color: $backgroundColor;
     background-color: $mainColor;
     width: 100%;
-    margin: 4em 0 0 0;
     padding: 1em;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    margin: 0;
 }

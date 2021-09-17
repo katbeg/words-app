@@ -1,10 +1,9 @@
 import React from "react";
-
+import words from "./words";
 import './styles/table.scss';
 import Row from "./tableRow";
 
-function Table(props){
-    const words = props.words;
+function Table(){
     
     return(
         <div className='app-main__table'>

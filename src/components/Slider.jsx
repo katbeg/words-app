@@ -2,8 +2,8 @@ import React, { Fragment, useState } from 'react';
 import Carousel from 'react-material-ui-carousel'
 import Card from './card';
 import './styles/slider.scss';
-
-export default function CardSlider(props)
+import words from './words';
+export default function CardSlider()
 {
     const [cardIndex, setCardIndex] = useState(1);
     const nextIndex = (next, active) => {
@@ -11,7 +11,7 @@ export default function CardSlider(props)
     }
     const prevIndex = (prev, active) => {
         if(active === 0){
-            setCardIndex(props.words.length);
+            setCardIndex(words.length);
         }else{
             setCardIndex(active);
 
@@ -26,13 +26,13 @@ export default function CardSlider(props)
                 indicators={false}
             >
                 {
-                    props.words.map((w) => 
+                    words.map((w) => 
                         <Card  word={w.word}
                         preposition={w.preposition} transcription={w.transcription} translation = {w.translation}/>
                     )
                 }
             </Carousel>
-            <p className='slider__counter'>{cardIndex}/{props.words.length}</p>
+            <p className='slider__counter'>{cardIndex}/{words.length}</p>
         </Fragment> 
         
         

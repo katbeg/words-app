@@ -6,11 +6,36 @@
     color: $backgroundColor;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5em;
-    padding: 1em;
+    align-items: center;
+    padding: 0 1em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    &__container-left{
+        display: flex;
+        align-items: center;
+        &__logo{
+            width: 3em;
+        }
+        &__title {
+            display: inline;
+            font-family: $mainFont;
+            padding-left: 0.5em;
+        }
+    }
+    &__nav {
+        &__link{
+            text-decoration: none;
+            color: $backgroundColor;
+            font-family: $mainFont;
+            margin-left: 1em;
+            
+        }
+    }
 }
 
 .signInImg {
-    width: 3em;
+    width: 2em;
     padding-right: 1em;
 }
+

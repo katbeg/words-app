@@ -1,58 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import {  BrowserRouter,
           Switch,
-          Route,
-          Link } from 'react-router-dom';
-import Card from './components/card.jsx';
+          Route} from 'react-router-dom';
+import Game from './components/game.jsx';
 import './components/styles/card.scss';
 import './components/styles/variables.scss';
 import Header from './components/header.jsx';
-import Table from './components/table.jsx';
-import CardSlider from './components/Slider.jsx';
 import Loader from './components/loader.jsx';
+import Main from './components/Main.jsx';
+import Footer from './components/Footer.jsx';
 
-const words = [
-  {preposition: 'das',
-  word: 'Problem',
-  transcription: '[proˈbleːm]',
-  translation: 'Проблема'},
-  {preposition: 'die',
-  word: 'Arbeit',
-  transcription: '[ˈaʁbaɪ̯t]',
-  translation: 'Работа'},
-  {preposition: 'die',
-  word: 'Liebe',
-  transcription: '[ˈliːbə]',
-  translation: 'Любовь'},
-  {preposition: 'der',
-  word: 'Traum',
-  transcription: '[tʁaʊ̯m]',
-  translation: 'Мечта'},
-  {preposition: 'das',
-  word: 'Essen',
-  transcription: '[ˈɛsn̩]',
-  translation: 'Еда'},
-  {preposition: 'die',
-  word: 'Hochzeit',
-  transcription: '[ˈhɔˌʦaɪ̯t]',
-  translation: 'Свадьба'},
-  {preposition: 'das',
-  word: 'Kleid',
-  transcription: '[klaɪ̯t]',
-  translation: 'Платье'},
-  {preposition: 'der',
-  word: 'Computer',
-  transcription: '[kɔmˈpjuːtɐ]',
-  translation: 'Компьютер'},
-  {preposition: 'die',
-  word: 'Chefin',
-  transcription: '[ˈʃɛfɪn]',
-  translation: 'Начальница'},
-  {preposition: 'das',
-  word: 'Jahr',
-  transcription: 'ˈjaːɐ̯',
-  translation: 'Год'}
-];
 
 function App() {
   const [isLoading, setLoading] = useState(true);
@@ -63,30 +20,24 @@ function App() {
   },[]);
 
   return (
-    <div className="App">
+    <BrowserRouter>
+        <div className="App">
       <Header></Header>
-      <main className='app-main'>
+    <Switch>
         {isLoading? 
         <Loader/>:
         <>
-        <div>
-          <CardSlider words={words}/>
-        </div>
-        <div>
-        {
-          words.map((w) =>
-            <Card word={w.word} 
-            preposition={w.preposition} transcription={w.transcription} translation = {w.translation}></Card>
-          )
-        }
-        </div>
-        <Table words={words}></Table>
+        <main className='app-main'>
+          {<Route exact path='/game' component={(props) => <Game {...props}/>}></Route>}
+          {<Route exact path='/' component={(props) => <Main {...props}/>}></Route>}
+        </main>
+        <Footer></Footer>
         </>
-        }
-       
-      </main>
-      <footer></footer>
+        }      
+
+      </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 

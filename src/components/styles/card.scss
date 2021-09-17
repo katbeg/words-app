@@ -9,14 +9,15 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 8em;
 }
 
 .card {
     padding: 1em;
     margin-bottom: 1em;
     text-align: center;
-    min-width: 7em;
-    height: fit-content;
+    width: 7em;
+    height: 10em;
     border: 3px solid $mainColor;
     border-radius: 10%;
     font-family: $mainFont;

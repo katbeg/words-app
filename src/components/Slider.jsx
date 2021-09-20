@@ -6,10 +6,10 @@ import words from './words';
 export default function CardSlider()
 {
     const [cardIndex, setCardIndex] = useState(1);
-    const nextIndex = (next, active) => {
+    const nextIndex = (next) => {
         setCardIndex(next+1);
     }
-    const prevIndex = (prev, active) => {
+    const prevIndex = (active) => {
         if(active === 0){
             setCardIndex(words.length);
         }else{

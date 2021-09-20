@@ -4,6 +4,7 @@ import {  BrowserRouter,
           Route} from 'react-router-dom';
 import Game from './components/game.jsx';
 import './components/styles/card.scss';
+import './components/styles/loader.scss';
 import './components/styles/variables.scss';
 import Header from './components/header.jsx';
 import Loader from './components/loader.jsx';
@@ -24,8 +25,7 @@ function App() {
     <BrowserRouter>
         <div className="App">
       <Header></Header>
-    
-        {isLoading? 
+      {isLoading? 
         <Loader/>:
         <>
         <main className='app-main'>
@@ -37,9 +37,7 @@ function App() {
         </main>
         <Footer></Footer>
         </>
-        }      
-
-      
+        }       
     </div>
     </BrowserRouter>
   );

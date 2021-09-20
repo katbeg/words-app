@@ -1,9 +1,5 @@
 @import './variables.scss';
 
-.card__translation {
-    color: $mainColor;
-    font-weight: bold;
-}
 .app-main{
     display: flex;
     flex-wrap: wrap;
@@ -22,6 +18,10 @@
     border-radius: 10%;
     font-family: $mainFont;
     background-color: $backgroundColor;
+    &__translation {
+        color: $mainColor;
+        font-weight: bold;
+    }
 }
 
 th, td {

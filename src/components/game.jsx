@@ -1,4 +1,7 @@
-import React, { useState} from "react";
+import React, {useState,
+              useRef,
+              forwardRef,
+            } from "react";
 import Card from "./card";
 import words from "./words";
 import './styles/game.scss';

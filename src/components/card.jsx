@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState} 
+            from "react";
 import './styles/card.scss'
 import Button from "./button";
 
@@ -12,8 +13,8 @@ function Card(props){
         }
     }
 
-       return(
-        <div className='card'>
+    return(
+        <div className='card' >
             <p className='card__word'>{props.preposition} {props.word}</p>
             <p className='card__transcription'>{props.transcription}</p>
             {pressed ?
@@ -21,7 +22,7 @@ function Card(props){
                 <Button onClick={onClick} text='Cancel'></Button>
             </div>
               :
-            <Button text='Check' onClick={onClick}></Button>
+                <Button btnRef={props.cardRef}  text='Check' onClick={onClick}></Button>
             }   
         </div>
     );

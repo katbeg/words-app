@@ -14,6 +14,7 @@ function Header(){
             </div>
             <nav className='header__nav'>
                     <Link className='header__nav__link' to='/game'>Game</Link>
+                    <Link className='header__nav__link' to='/cards'>Cards</Link>
                     <Link className='header__nav__link' to='/'>Main</Link>
             </nav>
             <div>

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import Carousel from 'react-material-ui-carousel'
 import Card from './card';
 import './styles/slider.scss';
@@ -17,6 +17,11 @@ export default function CardSlider()
 
         }
     }
+
+    const ref = useRef();
+
+    useEffect(() => ref.current && ref.current.focus());
+
     return (      
         <Fragment className='slider'>
             <Carousel
@@ -27,7 +32,7 @@ export default function CardSlider()
             >
                 {
                     words.map((w) => 
-                        <Card  word={w.word}
+                        <Card cardRef={ref}  word={w.word}
                         preposition={w.preposition} transcription={w.transcription} translation = {w.translation}/>
                     )
                 }

@@ -7,13 +7,14 @@
     grid-gap:10px;
     margin: auto;
     grid-template-columns: repeat(6, 1fr);
+    &__card-outer{
+        perspective:1000px;
+        height: calc((100vh - 290px) / 6);
+        max-height: calc((100vw - 80px) / 6);
+    }
 }
 
-.card-outer{
-    perspective:1000px;
-    height: calc((100vh - 290px) / 6);
-    max-height: calc((100vw - 80px) / 6);
-}
+
 .gameCard{
     font-family: $mainFont;
     border-radius: 5px;
@@ -37,7 +38,7 @@
     background-color: $backgroundColor;
     transform:rotateY(180deg);
 }
-.card-outer.flipped .gameCard{
+.board__card-outer.flipped .gameCard{
     transform:rotateY(0);
 }
 
@@ -48,4 +49,8 @@
     color: $mainColor;
     padding: 20px 0;
     font-size: 1rem;
+    &__win {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
 }

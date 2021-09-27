@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Carousel from 'react-material-ui-carousel'
 import Card from './card';
 import './styles/slider.scss';
@@ -6,15 +6,18 @@ import words from './words';
 export default function CardSlider()
 {
     const [cardIndex, setCardIndex] = useState(1);
+
     const nextIndex = (next) => {
+        console.log(cardIndex);
         setCardIndex(next+1);
     }
+
     const prevIndex = (active) => {
-        if(active === 0){
+        console.log(cardIndex);
+        if(active === 0 || cardIndex === 1){
             setCardIndex(words.length);
         }else{
             setCardIndex(active);
-
         }
     }
 
@@ -23,7 +26,7 @@ export default function CardSlider()
     useEffect(() => ref.current && ref.current.focus());
 
     return (      
-        <Fragment className='slider'>
+        <div className='slider'>
             <Carousel
                 autoPlay={false}
                 next={(next,active)=>nextIndex(next,active)}
@@ -38,7 +41,7 @@ export default function CardSlider()
                 }
             </Carousel>
             <p className='slider__counter'>{cardIndex}/{words.length}</p>
-        </Fragment> 
+        </div> 
         
         
     )

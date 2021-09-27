@@ -4,13 +4,10 @@ import {shuffle} from 'lodash';
 import './styles/game.scss';
 
 export default function Game(){
-    let translations = [];
     let originalWords = [];
     words.map((w) => {
-        originalWords.push(w.word);
-        translations.push(w.translation);
+        return originalWords.push(`${w.word} ${w.translation}`);
     })
-
     const [cards,setCards] = useState( shuffle([...originalWords, ...originalWords]) );
     const [clicks, setClicks] = useState(0);
     const [won,setWon] = useState(false);
@@ -18,7 +15,7 @@ export default function Game(){
     const [foundPairs,setFoundPairs] = useState([]);
   
     function flipCard(index) {
-    console.log(index);
+
       if (won) {
         setCards(shuffle([...originalWords, ...originalWords]));
         setFoundPairs([]);
@@ -49,21 +46,21 @@ export default function Game(){
       <div>
           <div className="stats">
           {won && (
-            <>You won the game! Congratulations!<br />
-              Click any card to play again.<br /><br />
+            <><span className='stats__win'>You won the game! Congratulations!</span><br />
+              <span className='stats__win'>Click any card to play again.</span><br /><br />
             </>
           )}
-          Clicks: {clicks} &nbsp;&nbsp;&nbsp; Found pairs:{foundPairs.length/2}
+          Clicks: {clicks} &nbsp;&nbsp;&nbsp; Found pairs: {foundPairs.length/2}
         </div>
         <div className="board">
           {cards.map((card, index) => {
             const flippedToFront =  (activeCards.indexOf(index) !== -1) || foundPairs.indexOf(index) !== -1;
             return (
-              <div className={"card-outer " + (flippedToFront ? 'flipped' : '')}
+              <div className={"board__card-outer " + (flippedToFront ? 'flipped' : '')}
                    onClick={() => flipCard(index)}>
                 <div className="gameCard">
                   <div className="front">
-                    <p>{card}</p>
+                    {index%2 === 0 ? <p> {card.split(' ')[0]}</p> : <p>{card.split(' ')[1]}</p>}
                   </div>
                   <div className="back" />
                 </div>

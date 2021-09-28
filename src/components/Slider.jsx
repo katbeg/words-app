@@ -6,6 +6,11 @@ import words from './words';
 export default function CardSlider()
 {
     const [cardIndex, setCardIndex] = useState(1);
+    const [isLearned, setLearned] = useState(0);
+
+    const addToLearned = () => {
+        setLearned(isLearned+1);
+    }
 
     const nextIndex = (next) => {
         console.log(cardIndex);
@@ -35,7 +40,9 @@ export default function CardSlider()
             >
                 {
                     words.map((w) => 
-                        <Card cardRef={ref}  word={w.word}
+                        <Card 
+                        addToLearned = {addToLearned}
+                        cardRef={ref}  word={w.word}
                         preposition={w.preposition} transcription={w.transcription} translation = {w.translation}/>
                     )
                 }

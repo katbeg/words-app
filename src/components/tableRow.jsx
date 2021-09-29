@@ -18,9 +18,18 @@ export default function Row(props){
         setEdited(!edited);
     }
 
+    const handleInputChange= (e) => {
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+    
+        setWord(value);
+      }
+
     return(
             edited ? <tr>
-                        <td><input id='wordInput' onChange={(val) => setWord(val.target.value)} value={word}/></td>
+                        {/* <td><input id='wordInput' onChange={(val) => setWord(val.target.value)} value={word}/></td> */}
+                        <td><input name='word' id='wordInput' onChange={handleInputChange} value={word}/></td>
                         <td><input id='transcriptionInput' onChange={(val) => setTranscription(val.target.value)} value={transcription}/></td>
                         <td><input id='translationInput' onChange={(val) => setTranslation(val.target.value)} value={translation}/></td>
                         <td><Button text='Cancel' onClick={cancelChanges} ></Button>

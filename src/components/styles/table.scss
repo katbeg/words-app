@@ -1,5 +1,9 @@
 @import './variables.scss';
 
+.empty-input {
+    border: 1px solid red;
+}
+
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 14px;

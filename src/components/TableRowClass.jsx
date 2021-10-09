@@ -1,4 +1,3 @@
-// import { render } from "@testing-library/react";
 import React from "react";
 import Button from "./button";
 
@@ -28,7 +27,6 @@ export default class Row extends React.Component {
             document.getElementById('translationInput').classList.toggle('empty-input');
             alert('Translation field should contain only russian letters!');
         } else {
-            console.log(this.state);
             this.handleEdit();
         }
     }
@@ -47,7 +45,7 @@ export default class Row extends React.Component {
         const value = target.value;
         const name = target.name;
 
-        if(value == ''){
+        if(value === ''){
             this.setState({
                 isDisabled: true
             })
@@ -69,7 +67,8 @@ export default class Row extends React.Component {
     render(){
         return(
             this.state.isEdited ? <tr>
-                        <td><input name='word' id='wordInput' onChange={this.handleInputChange} value={this.state.word}/></td>
+                        <td><input name='word' id='wordInput' onChange={this.handleInputChange} value={this.state.word}/>
+                        </td>
                         <td><input name='transcription' id='transcriptionInput' onChange={this.handleInputChange} value={this.state.transcription}/></td>
                         <td><input name='translation' id='translationInput' onChange={this.handleInputChange} value={this.state.translation}/></td>
                         <td><Button text='Cancel' onClick={this.cancelChanges} ></Button>

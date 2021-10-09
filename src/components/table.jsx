@@ -1,7 +1,6 @@
 import React from "react";
 import words from "./words";
 import './styles/table.scss';
-// import Row from "./tableRow";
 import Row from "./TableRowClass";
 
 function Table(){

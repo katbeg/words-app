@@ -4,6 +4,16 @@
     border: 1px solid red;
 }
 
+#addImg {
+    width: 16px;
+    vertical-align: middle;
+    margin-left: 5px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 14px;

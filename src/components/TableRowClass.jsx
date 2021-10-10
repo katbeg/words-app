@@ -79,9 +79,9 @@ export default class Row extends React.Component {
                         <Button isDisabled={this.state.isDisabled} id='save-btn' text='Save' onClick={this.handleSave}></Button></td>
                     </tr> :
                     <tr>
-                        <td>{this.state.russian}</td>
-                        <td>{this.state.transcription}</td>
                         <td>{this.state.english}</td>
+                        <td>{this.state.transcription}</td>
+                        <td>{this.state.russian}</td>
                         <td><Button text='Удалить' onClick={this.props.handleDelete(this.state.id)} ></Button>
                         <Button text='Редактировать' onClick={this.handleEdit}></Button></td>
                     </tr>

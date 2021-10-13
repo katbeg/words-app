@@ -21,10 +21,8 @@ export default class Row extends React.Component {
 
     handleSave = () => {
         if(this.state.word.match(/[А-Яа-яЁё]/gm)){
-            document.getElementById('wordInput').classList.toggle('empty-input');
             alert('Word field should contain only latin letters!');
         } else if(this.state.translation.match(/[A-Za-z]/gm)){
-            document.getElementById('translationInput').classList.toggle('empty-input');
             alert('Translation field should contain only russian letters!');
         } else {
             this.handleEdit();
@@ -49,11 +47,7 @@ export default class Row extends React.Component {
             this.setState({
                 isDisabled: true
             })
-            target.classList.toggle('empty-input');
         } else {
-            if(target.className.match('empty-input')){
-                target.classList.remove('empty-input');
-            }
             this.setState({
                 isDisabled: false
             })
@@ -67,11 +61,11 @@ export default class Row extends React.Component {
     render(){
         return(
             this.state.isEdited ? <tr>
-                        <td><input name='word' id='wordInput' onChange={this.handleInputChange} value={this.state.word}/>
+                        <td><input name='word' id='wordInput' className={this.state.isDisabled ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.word}/>
                         </td>
-                        <td><input name='transcription' id='transcriptionInput' onChange={this.handleInputChange} value={this.state.transcription}/></td>
-                        <td><input name='translation' id='translationInput' onChange={this.handleInputChange} value={this.state.translation}/></td>
-                        <td><Button text='Cancel' onClick={this.cancelChanges} ></Button>
+                        <td><input name='transcription' id='transcriptionInput' className={this.state.isDisabled ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.transcription}/></td>
+                        <td><input name='translation' id='translationInput' className={this.state.isDisabled ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.translation}/></td>
+                        <td><Button text='Cancel' className={this.state.isDisabled ? 'empty-input' : ''} onClick={this.cancelChanges} ></Button>
                         <Button isDisabled={this.state.isDisabled} id='save-btn' text='Save' onClick={this.handleSave}></Button></td>
                     </tr> :
                     <tr>

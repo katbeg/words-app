@@ -16,10 +16,6 @@ function Table(){
     });
     const [isAdding, setAdding] = useState(false);
 
-    const handleDelete = (id) => {
-      fetch(`/api/words/${id}/delete`, {method: 'POST'});
-    } 
-
     const handleInputChange = (e) => {
       const name = e.target.name;
       const value = e.target.value;
@@ -78,7 +74,7 @@ function Table(){
             {
               
               words.map((w) =>
-              <Row words={words} handleDelete={handleDelete} setWords={setWords} id={w.id} russian={w.russian} transcription = {w.transcription} english = {w.english}></Row>
+              <Row words={words} setWords={setWords} id={w.id} russian={w.russian} transcription = {w.transcription} english = {w.english}></Row>
               ) 
             }
             </tbody>

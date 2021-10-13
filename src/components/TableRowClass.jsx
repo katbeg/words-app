@@ -69,6 +69,11 @@ export default class Row extends React.Component {
         });
     }
     
+    handleDelete(){
+        let id = this.state.id;
+        fetch(`/api/words/${id}/delete`, {method: 'POST'});
+    }
+
     render(){
         return(
             this.state.isEdited ? <tr>
@@ -82,7 +87,7 @@ export default class Row extends React.Component {
                         <td>{this.state.english}</td>
                         <td>{this.state.transcription}</td>
                         <td>{this.state.russian}</td>
-                        <td><Button text='Удалить' onClick={this.props.handleDelete(this.state.id)} ></Button>
+                        <td><Button text='Удалить' onClick={this.handleDelete} ></Button>
                         <Button text='Редактировать' onClick={this.handleEdit}></Button></td>
                     </tr>
         );

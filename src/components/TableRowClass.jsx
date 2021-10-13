@@ -54,11 +54,7 @@ export default class Row extends React.Component {
             this.setState({
                 isDisabled: true
             })
-            target.classList.toggle('empty-input');
         } else {
-            if(target.className.match('empty-input')){
-                target.classList.remove('empty-input');
-            }
             this.setState({
                 isDisabled: false
             })
@@ -77,9 +73,9 @@ export default class Row extends React.Component {
     render(){
         return(
             this.state.isEdited ? <tr>
-                        <td><input name='word' id='wordInput' onChange={this.handleInputChange} value={this.state.english}/></td>
-                        <td><input name='transcription' id='transcriptionInput' onChange={this.handleInputChange} value={this.state.transcription}/></td>
-                        <td><input name='russian' id='russianInput' onChange={this.handleInputChange} value={this.state.russian}/></td>
+                        <td><input name='word' id='wordInput'  className={this.state.english === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.english}/></td>
+                        <td><input name='transcription' id='transcriptionInput'  className={this.state.transcription === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.transcription}/></td>
+                        <td><input name='russian' id='russianInput'  className={this.state.russian === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.russian}/></td>
                         <td><Button text='Cancel' onClick={this.cancelChanges} ></Button>
                         <Button isDisabled={this.state.isDisabled} id='save-btn' text='Save' onClick={this.handleSave}></Button></td>
                     </tr> :

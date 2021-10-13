@@ -45,7 +45,7 @@ export default class Row extends React.Component {
 
         if(value === ''){
             this.setState({
-                isDisabled: true
+                isDisabled: true,
             })
         } else {
             this.setState({
@@ -61,11 +61,11 @@ export default class Row extends React.Component {
     render(){
         return(
             this.state.isEdited ? <tr>
-                        <td><input name='word' id='wordInput' className={this.state.isDisabled ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.word}/>
+                        <td><input name='word' id='wordInput' className={this.state.word === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.word}/>
                         </td>
-                        <td><input name='transcription' id='transcriptionInput' className={this.state.isDisabled ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.transcription}/></td>
-                        <td><input name='translation' id='translationInput' className={this.state.isDisabled ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.translation}/></td>
-                        <td><Button text='Cancel' className={this.state.isDisabled ? 'empty-input' : ''} onClick={this.cancelChanges} ></Button>
+                        <td><input name='transcription' id='transcriptionInput' className={this.state.transcription === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.transcription}/></td>
+                        <td><input name='translation' id='translationInput' className={this.state.translation === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.translation}/></td>
+                        <td><Button text='Cancel' onClick={this.cancelChanges} ></Button>
                         <Button isDisabled={this.state.isDisabled} id='save-btn' text='Save' onClick={this.handleSave}></Button></td>
                     </tr> :
                     <tr>

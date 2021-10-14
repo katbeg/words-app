@@ -11,7 +11,6 @@ export const WordsProvider = (props) => {
     const [words, setWords] = useState();
 
     useEffect(() => {
-        
         fetch('/api/words')
             .then(setLoaded(true))
             .then((response) => response.json())

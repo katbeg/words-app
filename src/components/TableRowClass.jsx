@@ -1,5 +1,6 @@
 // import { render } from "@testing-library/react";
 // import { words } from "lodash";
+import { words } from "lodash";
 import React from "react";
 import Button from "./button";
 
@@ -13,7 +14,8 @@ export default class Row extends React.Component {
           english: this.props.english,
           isDisabled: false,
           words: this.props.words ,
-          id: this.props.id
+          id: this.props.id,
+          tags: this.props.tags || 'tags'
         };
       }
 
@@ -25,13 +27,10 @@ export default class Row extends React.Component {
 
     handleSave = () => {
         if(this.state.english.match(/[А-Яа-яЁё]/gm)){
-            document.getElementById('wordInput').classList.toggle('empty-input');
             alert('Word field should contain only latin letters!');
         } else if(this.state.russian.match(/[A-Za-z]/gm)){
-            document.getElementById('translationInput').classList.toggle('empty-input');
             alert('Translation field should contain only russian letters!');
         } else {
-            console.log(this.state);
             this.handleEdit();
         }
     }
@@ -65,9 +64,12 @@ export default class Row extends React.Component {
         });
     }
     
-    handleDelete(){
+    handleDelete = () => {
         let id = this.state.id;
-        fetch(`/api/words/${id}/delete`, {method: 'POST'});
+        fetch(`/api/words/${id}/delete`, {method: 'POST'})
+            .then(response => response.JSON)
+            .then((response) => this.props.setWords(response))
+            .then(this.props.setLoaded(false));
     }
 
     render(){

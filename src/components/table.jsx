@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import './styles/table.scss';
 // import Row from "./tableRow";
 import Row from "./TableRowClass";
-import { useWords} from "../context/WordsContext"; 
+import {useWords} from "../context/WordsContext"; 
 import Button from "./button";
 
 function Table(){
     const {words, setWords} = useWords();
+    const {loaded, setLoaded} = useWords();
     const [newWord, setNewWord] = useState({
       english: "",
       transcription: "",
@@ -28,17 +29,18 @@ function Table(){
         setAdding(true);
     }
 
-    const addNewWord = async () => {
-      try {
-        const res = await fetch("/api/words", {
-          method: "POST",
-          body: JSON.stringify(newWord),
-        });
-        setNewWord({ english: "", transcription: "", russian: "", tags: "" });
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    const addNewWord = (e) => {
+      e.preventDefault();
+      fetch(`/api/words/add`, 
+              {method: 'POST',
+              body: JSON.stringify({
+                  transcription: newWord.transcription,
+                  russian: newWord.russian,
+                  english: newWord.english,
+                  tags: newWord.tags}
+              )})
+              .then(response => response.JSON)
+  }
 
     return(
         <div className='app-main__table'>
@@ -46,7 +48,7 @@ function Table(){
               <th>Слово с предлогом</th>
               <th>Транскрипция</th>
               <th>Перевод</th>
-              <th onClick={handleAdd}> Добавить<img id='addImg' src='https://cdn-icons-png.flaticon.com/512/1828/1828817.png'/></th>
+              <th onClick={handleAdd}> Добавить<img alt='Plus' id='addImg' src='https://cdn-icons-png.flaticon.com/512/1828/1828817.png'/></th>
             </thead>
             <tbody>
             {isAdding && <tr>

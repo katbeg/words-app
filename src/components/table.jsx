@@ -5,6 +5,7 @@ import './styles/table.scss';
 import Row from "./TableRowClass";
 import {useWords} from "../context/WordsContext"; 
 import Button from "./button";
+import Loader from './loader'
 
 function Table(){
     const {words, setWords} = useWords();
@@ -13,7 +14,7 @@ function Table(){
       english: "",
       transcription: "",
       russian: "",
-      tags: "",
+      tags: ""
     });
     const [isAdding, setAdding] = useState(false);
 
@@ -39,7 +40,9 @@ function Table(){
                   english: newWord.english,
                   tags: newWord.tags}
               )})
-              .then(response => response.JSON)
+              .then(response => response.json())
+              .then(response => setWords([...words, response]))
+      setAdding(false);
   }
 
     return(
@@ -74,10 +77,7 @@ function Table(){
                         <Button onClick={addNewWord} id='save-btn' text='Save'></Button></td>
                     </tr>}
             {
-              
-              words.map((w) =>
-              <Row words={words} setWords={setWords} id={w.id} russian={w.russian} transcription = {w.transcription} english = {w.english}></Row>
-              ) 
+             loaded ? <Loader/> : words.map((w) => <Row loaded={loaded} setLoaded={setLoaded} words={words} setWords={setWords} id={w.id} russian={w.russian} transcription = {w.transcription} english = {w.english}></Row>) 
             }
             </tbody>
         </div>

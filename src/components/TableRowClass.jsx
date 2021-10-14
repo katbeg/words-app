@@ -1,6 +1,7 @@
 // import { render } from "@testing-library/react";
 // import { words } from "lodash";
-import { words } from "lodash";
+// import { words } from "lodash";
+// import { words } from "lodash";
 import React from "react";
 import Button from "./button";
 
@@ -13,7 +14,7 @@ export default class Row extends React.Component {
           russian: this.props.russian,
           english: this.props.english,
           isDisabled: false,
-          words: this.props.words ,
+          words: this.props.words,
           id: this.props.id,
           tags: this.props.tags || 'tags'
         };
@@ -31,6 +32,15 @@ export default class Row extends React.Component {
         } else if(this.state.russian.match(/[A-Za-z]/gm)){
             alert('Translation field should contain only russian letters!');
         } else {
+            let id = this.state.id;
+            fetch(`/api/words/${id}/update`, {method: 'POST', 
+                body: JSON.stringify({
+                    transcription: this.state.transcription,
+                    russian: this.state.russian,
+                    english: this.state.english,
+                    tags: this.state.tags}
+                )})
+                .then(response => response.JSON)
             this.handleEdit();
         }
     }
@@ -58,24 +68,23 @@ export default class Row extends React.Component {
                 isDisabled: false
             })
         }
-        
         this.setState({
             [name]: value
         });
     }
-    
+
     handleDelete = () => {
         let id = this.state.id;
         fetch(`/api/words/${id}/delete`, {method: 'POST'})
-            .then(response => response.JSON)
-            .then((response) => this.props.setWords(response))
-            .then(this.props.setLoaded(false));
+            .then(response => response.JSON);
+        this.props.setWords(this.props.words.filter((w) => w.id !== id))
     }
 
     render(){
         return(
-            this.state.isEdited ? <tr>
-                        <td><input name='word' id='wordInput'  className={this.state.english === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.english}/></td>
+            this.state.isEdited ? 
+                    <tr>
+                        <td><input name='english' id='englishInput'  className={this.state.english === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.english}/></td>
                         <td><input name='transcription' id='transcriptionInput'  className={this.state.transcription === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.transcription}/></td>
                         <td><input name='russian' id='russianInput'  className={this.state.russian === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.russian}/></td>
                         <td><Button text='Cancel' onClick={this.cancelChanges} ></Button>

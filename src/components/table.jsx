@@ -1,10 +1,23 @@
-import React from "react";
-import words from "./words";
+import React, { useState } from "react";
+// import words from "./words";
 import './styles/table.scss';
 import Row from "./TableRowClass";
 
-function Table(){
-    
+
+const Table = inject(['wordsStore'])(observer(({ wordsStore }) => {
+
+    // const [newWord, setNewWord] = useState('');
+    // // addNewWord = () => {
+    // //     if (!newWord) return;
+    // //     wordsStore.addWord(newWord);
+    // //     setNewWord("");
+    // // }
+		// // deleteWord = (id) => {
+    // //   wordsStore.removeWord(id)
+    // // }
+
+  
+
     return(
         <div className='app-main__table'>
             <thead>
@@ -15,13 +28,13 @@ function Table(){
             </thead>
             <tbody>
             {
-              words.map((w) =>
+              wordsStore.words.map((w) =>
               <Row preposition = {w.preposition} word={w.word} transcription = {w.transcription} translation = {w.translation}></Row>
               )
             }
             </tbody>
         </div>
     )
-}
+}));
 
 export default Table;

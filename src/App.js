@@ -12,15 +12,9 @@ import Main from './components/Main.jsx';
 import Footer from './components/Footer.jsx';
 import Page404 from './components/Page404.jsx';
 import Game from './components/Game.jsx';
+import {observer, inject} from "mobx-react";
 
 function App() {
-  const [isLoading, setLoading] = useState(true);
-  
-  useEffect(() => {
-    //запрос на сервер, после запроса setLoading меняется
-    setLoading(false); 
-  },[]);
-
   return (
     <BrowserRouter>
         <div className="App">

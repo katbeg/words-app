@@ -9,6 +9,7 @@ import WordsStore from './stores/WordsStore';
 const stores = {
     wordStore: new WordsStore()
 }
+
 ReactDOM.render(
   <Provider {...stores}>
   {/* <React.StrictMode> */}

@@ -7,15 +7,11 @@ export default class Row extends React.Component {
         this.state = {
           isEdited: false,
           transcription: this.props.transcription,
-          russian: this.props.russian,
-          english: this.props.english,
-          isDisabled: false,
-          words: this.props.words,
-          id: this.props.id,
-          tags: this.props.tags || 'tags'
+          translation: this.props.translation,
+          word: `${this.props.preposition} ${this.props.word}`,
+          isDisabled: false
         };
       }
-
 
     handleEdit = () => {
             this.setState({
@@ -64,21 +60,21 @@ export default class Row extends React.Component {
     
     render(){
         return(
-            this.state.isEdited ? 
-                <tr>
-                    <td><input name='english' id='englishInput'  className={this.state.english === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.english}/></td>
-                    <td><input name='transcription' id='transcriptionInput'  className={this.state.transcription === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.transcription}/></td>
-                    <td><input name='russian' id='russianInput'  className={this.state.russian === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.russian}/></td>
-                    <td><Button text='Cancel' onClick={this.cancelChanges} ></Button>
-                    <Button isDisabled={this.state.isDisabled} id='save-btn' text='Save' onClick={this.handleSave}></Button></td>
-                </tr> :
-                <tr>
-                    <td>{this.state.english}</td>
-                    <td>{this.state.transcription}</td>
-                    <td>{this.state.russian}</td>
-                    <td><Button text='Удалить' onClick={this.handleDelete} ></Button>
-                    <Button text='Редактировать' onClick={this.handleEdit}></Button></td>
-                </tr>
+            this.state.isEdited ? <tr>
+                        <td><input name='word' id='wordInput' className={this.state.word === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.word}/>
+                        </td>
+                        <td><input name='transcription' id='transcriptionInput' className={this.state.transcription === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.transcription}/></td>
+                        <td><input name='translation' id='translationInput' className={this.state.translation === '' ? 'empty-input' : ''} onChange={this.handleInputChange} value={this.state.translation}/></td>
+                        <td><Button text='Cancel' onClick={this.cancelChanges} ></Button>
+                        <Button isDisabled={this.state.isDisabled} id='save-btn' text='Save' onClick={this.handleSave}></Button></td>
+                    </tr> :
+                    <tr>
+                        <td>{this.state.word}</td>
+                        <td>{this.state.transcription}</td>
+                        <td>{this.state.translation}</td>
+                        <td><Button text='Удалить'></Button>
+                        <Button text='Редактировать' onClick={this.handleEdit}></Button></td>
+                    </tr>
         );
     }
 }

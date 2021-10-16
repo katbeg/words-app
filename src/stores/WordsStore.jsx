@@ -1,32 +1,21 @@
 import { action, observable } from "mobx";
-class WordsStore {
+
+class WordsStore{
+
   @observable words = [];
+  @observable isLoading = false;
 
-//   useEffect(() => {
-//     setLoaded(true);
-//     fetch('/api/words')
-//         .then((response) => response.json())
-//         .then((response) => setWords(response))
-//         .then(setLoaded(false))
-// }, []);
-
-  componentDidMount(){
+  @action getWords = () => {
+    this.isLoading = true;
     fetch('/api/words')
-      .then((response) => response.json())
-      .then((response) => this.setState.words(response))
-      .then(setLoaded(false))
+        .then(response => response.json())
+        // .then(response => this.words = response)
+        .then(response => console.log(response))
+    this.isLoading = true;
   }
 
-  @action deleteWord() {
-    return this.counter + 1
-  }
-
-  @action updateWord() {
-    return this.counter + 1
-  }
-
-  @action addWord() {
-    return this.counter + 1
+  @action addWord = (word) => {
+    this.words.push(word)
   }
 }
 

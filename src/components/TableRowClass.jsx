@@ -1,7 +1,10 @@
 import React from "react";
 import Button from "./button";
+import { inject, observer } from "mobx-react";
 
-export default class Row extends React.Component {
+@inject("wordStore")
+@observer
+class Row extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,13 +27,30 @@ export default class Row extends React.Component {
     }
 
     handleSave = () => {
-        if(this.state.word.match(/[А-Яа-яЁё]/gm)){
+        if(this.state.english.match(/[А-Яа-яЁё]/gm)){
             alert('Word field should contain only latin letters!');
-        } else if(this.state.translation.match(/[A-Za-z]/gm)){
+        } else if(this.state.russian.match(/[A-Za-z]/gm)){
             alert('Translation field should contain only russian letters!');
         } else {
+            // const {wordStore} = this.props;
+            // wordStore.updateWord(this.state.id, this.state.transcription, this.state.russian, this.state.english);
+            //в wordStore прописан метод updateWord, но почему-то фетч оттуда не срабатывает и не изменяет данные в апи
+            //точно такой же запрос из этого класса срабатывает как нужно
+            fetch(`/api/words/${this.state.id}/update`, {method: 'POST', 
+                body: JSON.stringify({
+                    transcription: this.state.transcription,
+                    russian: this.state.russian,
+                    english: this.state.english,
+                    tags: this.state.tags}
+                )})
+                .then(response => response.json())
             this.handleEdit();
         }
+    }
+
+    handleDelete = () => {
+        const {wordStore} = this.props;
+        wordStore.deleteWord(this.state.id);
     }
 
     cancelChanges = () => {
@@ -76,9 +96,11 @@ export default class Row extends React.Component {
                     <td>{this.state.english}</td>
                     <td>{this.state.transcription}</td>
                     <td>{this.state.russian}</td>
-                    <td><Button text='Удалить' onClick={this.handleDelete} ></Button>
+                    <td><Button text='Удалить' onClick={this.handleDelete}></Button>
                     <Button text='Редактировать' onClick={this.handleEdit}></Button></td>
                 </tr>
         );
     }
 }
+
+export default Row;

@@ -38,20 +38,20 @@ class WordsStore{
       return this.words.splice(index, 1)
   }
 
-  // @action updateWord = (id, transcription, russian, english, tags) => {
-  //   let updatedWord = {
-  //     transcription: transcription,
-  //     russian: russian,
-  //     english: english,
-  //     tags: tags,
-  //     id: id
-  //   }
-  //   fetch(`/api/words/${id}/update`, {
-  //     method: 'POST',
-  //     body: JSON.stringify({updatedWord})
-  //   })
-  //   .then(response => response.json())
-  // }
+  @action updateWord = (id, transcription, russian, english, tags) => {
+    let updatedWord = {
+      transcription: transcription,
+      russian: russian,
+      english: english,
+      tags: tags,
+      id: id
+    }
+    fetch(`/api/words/${id}/update`, {
+      method: 'POST',
+      body: JSON.stringify(updatedWord)
+    })
+    .then(response => response.json())
+  }
 }
 
 export default WordsStore;

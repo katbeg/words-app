@@ -32,18 +32,8 @@ class Row extends React.Component {
         } else if(this.state.russian.match(/[A-Za-z]/gm)){
             alert('Translation field should contain only russian letters!');
         } else {
-            // const {wordStore} = this.props;
-            // wordStore.updateWord(this.state.id, this.state.transcription, this.state.russian, this.state.english);
-            //в wordStore прописан метод updateWord, но почему-то фетч оттуда не срабатывает и не изменяет данные в апи
-            //точно такой же запрос из этого класса срабатывает как нужно
-            fetch(`/api/words/${this.state.id}/update`, {method: 'POST', 
-                body: JSON.stringify({
-                    transcription: this.state.transcription,
-                    russian: this.state.russian,
-                    english: this.state.english,
-                    tags: this.state.tags}
-                )})
-                .then(response => response.json())
+            const {wordStore} = this.props;
+            wordStore.updateWord(this.state.id, this.state.transcription, this.state.russian, this.state.english, this.state.tags);
             this.handleEdit();
         }
     }
